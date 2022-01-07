@@ -1,2 +1,1 @@
 # umpyutl
-UMpy utilities
