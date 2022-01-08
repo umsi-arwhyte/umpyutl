@@ -12,9 +12,9 @@ setuptools.setup(
     description="Utility classes and functions.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    keywords='arwhyte, utilities, UMpy',
-    url="https://github.com/arwhyte/arwutils",
-    install_requires=['pyyaml'],
+    keywords='arwhyte, utilities, umpyutl',
+    url="https://github.com/umsi-arwhyte/umpyutl",
+    install_requires=['requests'],
     packages=setuptools.find_packages(include=['umpyutl', 'umpyutl.*']),
     classifiers=[
         "Programming Language :: Python :: 3",
