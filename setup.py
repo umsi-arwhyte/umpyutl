@@ -6,7 +6,7 @@ with open("./README.md", "r") as fileobj:
 # Consider appending username to name in order to reduce possible package name collisions.
 setuptools.setup(
     name="umpyutl",
-    version="0.0.2",
+    version="0.0.3",
     author="Anthony Whyte",
     author_email="anthwhyte@gmail.com",
     description="Utility classes and functions.",
@@ -15,7 +15,13 @@ setuptools.setup(
     keywords='arwhyte, utilities, umpyutl',
     url="https://github.com/umsi-arwhyte/umpyutl",
     install_requires=['requests'],
-    packages=setuptools.find_packages(include=['umpyutl', 'umpyutl.*']),
+    packages=setuptools.find_packages(include=[
+        'umpyutl',
+        'umpyutl.http',
+        'umpyutl.reader',
+        'umpyutl.writer'
+        ]
+    ),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
