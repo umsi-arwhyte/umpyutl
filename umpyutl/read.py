@@ -1,6 +1,6 @@
 import csv
 import json
-from typing import List, Union
+from typing import List, OrderedDict, Union
 
 
 def read_csv(
@@ -30,22 +30,20 @@ def read_csv(
         list: a list of nested "row" lists
     """
     with open(filepath, 'r', encoding=encoding, newline=newline) as file_obj:
-        data = []
         reader = csv.reader(file_obj, delimiter=delimiter)
-        for row in reader:
-            data.append(row)
-
-        return data
+        return [row for row in reader]
 
 
 def read_csv_to_dicts(
     filepath: str,
     encoding: str ='utf-8',
     newline: str ='',
-    delimiter: str =','
-    ) -> List[dict]:
+    delimiter: str =',',
+    ordereddict: bool = True
+    ) -> Union[List[OrderedDict], List[dict]]:
     """Accepts a file path, creates a file object, and returns a list of dictionaries
-    that represent the row values using the cvs.DictReader().
+    that represent the row values using the cvs.DictReader(). Default type returned
+    in list is an OrderedDict which can be overridden.
 
     Parameters:
         filepath (str): path to file
@@ -53,18 +51,18 @@ def read_csv_to_dicts(
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
         delimiter (str): delimiter that separates the row values
+        orderdict (bool): return either list of OrderedDict objects or dict objects
 
     Returns:
         list: nested dictionaries representing the file contents
      """
     with open(filepath, 'r', newline=newline, encoding=encoding) as file_obj:
-        data = []
         reader = csv.DictReader(file_obj, delimiter=delimiter)
-        for line in reader:
-            data.append(line) # OrderedDict()
-            # data.append(dict(line)) # convert OrderedDict() to dict
 
-        return data
+        if ordereddict:
+            return [row for row in reader]
+        else:
+            return [dict(row) for row in reader]
 
 
 def read_file(
@@ -85,15 +83,9 @@ def read_file(
     """
     with open(filepath, 'r', encoding=encoding) as file_obj:
         if strip:
-            data = []
-            for line in file_obj:
-                # data.append(line) # includes trailing newline '\n'
-                data.append(line.strip()) # strip leading/trailing whitespace including '\n'
-            return data
-
-            # return [line.strip() for line in file_obj] # list comprehension (single line)
+            return [line.strip() for line in file_obj]
         else:
-            return file_obj.readlines() # list
+            return file_obj.readlines()
 
 
 def read_json(
