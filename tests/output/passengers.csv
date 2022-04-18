@@ -1,0 +1,3 @@
+url,name,birth_year,height_cm,mass_kg,homeworld,species
+https://starwars.fandom.com/wiki/Anakin_Skywalker,Anakin Skywalker,41BBY,188.0,87.0,https://starwars.fandom.com/wiki/Tatooine,https://swapi.py4e.com/api/species/1/
+https://starwars.fandom.com/wiki/Padm%C3%A9_Amidala,Padmé Amidala,46BBY,165.0,45.0,https://starwars.fandom.com/wiki/Naboo,https://swapi.py4e.com/api/species/1/

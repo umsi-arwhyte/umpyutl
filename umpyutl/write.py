@@ -51,6 +51,10 @@ def write_dicts_to_csv(
     The passed in fieldnames list is used by the DictWriter() to determine the order
     in which each dictionary's key-value pairs are written to the row.
 
+    WARN: This function is not designed to handle dictionaries that include key-value
+    pairs in which the values are sequences or dictionaries. In such cases, serialize the
+    object as JSON and write to a file using < write.write_json >.
+
     Parameters:
         filepath (str): path to target file (if file does not exist it will be created)
         data (list): dictionary content to be written to the target file
