@@ -1,2 +1,3 @@
 # umpyutl
-UMpy utilities
+
+A collection of utility classes and functions.
