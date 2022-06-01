@@ -1,5 +1,6 @@
 import csv
 import json
+import yaml
 from typing import List, OrderedDict, Union
 
 
@@ -20,7 +21,7 @@ def read_csv(
     may not be interpreted correctly by the csv.reader.
 
     Parameters:
-        filepath (str): The location of the file to read
+        filepath (str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
@@ -46,7 +47,7 @@ def read_csv_to_dicts(
     in list is an OrderedDict which can be overridden.
 
     Parameters:
-        filepath (str): path to file
+        filepath (str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
@@ -74,7 +75,7 @@ def read_file(
     escape character.
 
     Parameters:
-        filepath (str): path to file
+        filepath (str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file.
         strip (bool): remove white space, newline escape characters
 
@@ -96,7 +97,7 @@ def read_json(
     provided with a valid filepath.
 
     Parameters:
-        filepath (str): path to file
+        filepath (str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
 
     Returns:
@@ -104,3 +105,16 @@ def read_json(
     """
     with open(filepath, 'r', encoding=encoding) as file_obj:
         return json.load(file_obj)
+
+
+def read_yaml(filepath: str) -> Union[dict, list]:
+    """Read a YAML (Yet Another Markup Language) file given a valid filepath.
+
+    Parameters:
+        filepath (str): absolute or relative path to source file
+
+    Returns:
+        obj: typically a list or dictionary representation of the file object
+    """
+    with open(filepath, 'r') as file_object:
+        return yaml.load(file_object, Loader=yaml.FullLoader)
