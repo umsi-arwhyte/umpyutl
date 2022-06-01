@@ -1,5 +1,6 @@
 import csv
 import json
+import requests
 from typing import List, Tuple, Union
 
 
@@ -100,6 +101,31 @@ def write_file(
                 file_obj.write(f"{line}\n") # add newline
         else:
             file_obj.writelines(data) # write sequence to file
+
+
+def write_file_chunked_response(
+    filepath: str,
+    response: requests.Response,
+    mode: str = 'w',
+    chunk_size: int = 1024
+    ) -> None:
+    """Writes < requests.Response > to a target file as a stream of data chunks.
+    Override the optional write mode value if binary content <class 'bytes'> is to
+    be written to file (i.e., mode='wb') or an append operation is intended on an
+    existing file (i.e., mode='a' or 'ab').
+
+    Parameters:
+        filepath (str): absolute or relative path to target file
+        response (requests.Response): data to be written to the target file
+        mode (str): write operation mode
+        chunk_size (int); size of data chunks to stream
+
+    Returns:
+        None
+    """
+    with open(filepath, mode) as file_object:
+        for chunk in response.iter_content(chunk_size=chunk_size):
+            file_object.write(chunk)
 
 
 def write_json(
