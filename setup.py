@@ -6,7 +6,7 @@ with open("./README.md", "r") as fileobj:
 # Consider appending username to name in order to reduce possible package name collisions.
 setuptools.setup(
     name="umpyutl",
-    version="1.0.0",
+    version="1.1.0",
     author="Anthony Whyte",
     author_email="anthwhyte@gmail.com",
     description="Utility classes and functions.",
