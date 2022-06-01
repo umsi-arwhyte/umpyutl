@@ -103,7 +103,7 @@ def write_file(
             file_obj.writelines(data) # write sequence to file
 
 
-def write_file_chunked_response(
+def write_file_response_chunked(
     filepath: str,
     response: requests.Response,
     mode: str = 'w',
