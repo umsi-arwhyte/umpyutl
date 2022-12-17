@@ -1,13 +1,13 @@
 import csv
 import json
 import requests
-from typing import List, Tuple, Union
+from typing import List, Optional, Tuple
 
 
 def write_csv(
     filepath: str,
-    data: Union[list, tuple],
-    headers: Union[list, tuple] = None,
+    data: list | tuple,
+    headers: Optional[list | tuple] = None,
     encoding: str = 'utf-8',
     newline: str = ''
     ) -> None:
@@ -43,8 +43,8 @@ def write_csv(
 def write_dicts_to_csv(
     filepath: str,
     data: List[dict],
-    fieldnames: Union[list, tuple],
-    encoding: str ='utf-8',
+    fieldnames: list | tuple,
+    encoding: str = 'utf-8',
     newline: str = ''
     ) -> None:
     """
@@ -69,16 +69,13 @@ def write_dicts_to_csv(
     """
     with open(filepath, 'w', encoding=encoding, newline=newline) as file_obj:
         writer = csv.DictWriter(file_obj, fieldnames=fieldnames)
-
-        writer.writeheader() # first row
+        writer.writeheader()
         writer.writerows(data)
-        # for row in data:
-        #     writer.writerow(row)
 
 
 def write_file(
     filepath: str,
-    data: Union[List[str], Tuple[str]],
+    data: List[str] | Tuple[str],
     encoding: str = 'utf-8',
     newline: bool = True
     ) -> None:
@@ -130,7 +127,7 @@ def write_file_response_chunked(
 
 def write_json(
     filepath: str,
-    data: Union[dict, list],
+    data: dict | list,
     encoding: str = 'utf-8',
     ensure_ascii: bool = False,
     indent: int = 2

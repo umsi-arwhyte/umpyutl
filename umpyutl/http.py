@@ -1,5 +1,5 @@
 import requests as req
-from typing import Optional, Union
+from typing import Optional
 
 
 def get_resource(
@@ -27,7 +27,7 @@ def get_resource_json(
     url: str,
     params: Optional[dict] = None,
     timeout: int = 10
-    ) -> Union[dict, list]:
+    ) -> dict | list:
     """Returns a response object decoded into a dictionary or list.
 
     Parameters:

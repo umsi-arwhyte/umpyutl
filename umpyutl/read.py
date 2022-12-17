@@ -1,14 +1,14 @@
 import csv
 import json
 import yaml
-from typing import List, OrderedDict, Union
+from typing import List, OrderedDict
 
 
 def read_csv(
     filepath: str,
     encoding: str = 'utf-8',
     newline: str = '',
-    delimiter: str = ','
+    delimiter: str = ',',
     ) -> List[list]:
     """
     Reads a CSV file, parsing row values per the provided delimiter. Returns a list of lists,
@@ -37,11 +37,11 @@ def read_csv(
 
 def read_csv_to_dicts(
     filepath: str,
-    encoding: str ='utf-8',
-    newline: str ='',
-    delimiter: str =',',
-    ordereddict: bool = True
-    ) -> Union[List[OrderedDict], List[dict]]:
+    encoding: str = 'utf-8',
+    newline: str = '',
+    delimiter: str = ',',
+    ordered: bool = True
+    ) -> List[OrderedDict] | List[dict]:
     """Accepts a file path, creates a file object, and returns a list of dictionaries
     that represent the row values using the cvs.DictReader(). Default type returned
     in list is an OrderedDict which can be overridden.
@@ -52,7 +52,7 @@ def read_csv_to_dicts(
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
         delimiter (str): delimiter that separates the row values
-        orderdict (bool): return either list of OrderedDict objects or dict objects
+        ordered (bool): return either list of OrderedDict objects or dict objects
 
     Returns:
         list: nested dictionaries representing the file contents
@@ -60,7 +60,7 @@ def read_csv_to_dicts(
     with open(filepath, 'r', newline=newline, encoding=encoding) as file_obj:
         reader = csv.DictReader(file_obj, delimiter=delimiter)
 
-        if ordereddict:
+        if ordered:
             return [row for row in reader]
         else:
             return [dict(row) for row in reader]
@@ -92,7 +92,7 @@ def read_file(
 def read_json(
     filepath: str,
     encoding: str = 'utf-8'
-    ) -> Union[dict, list]:
+    ) -> dict | list:
     """Reads a JSON document, decodes the file content, and returns a list or dictionary if
     provided with a valid filepath.
 
@@ -107,14 +107,14 @@ def read_json(
         return json.load(file_obj)
 
 
-def read_yaml(filepath: str) -> Union[dict, list]:
+def read_yaml(filepath: str) -> dict | list:
     """Read a YAML (Yet Another Markup Language) file given a valid filepath.
 
     Parameters:
         filepath (str): absolute or relative path to source file
 
     Returns:
-        obj: typically a list or dictionary representation of the file object
+        dict | list: typically a list or dictionary representation of the file object
     """
     with open(filepath, 'r') as file_object:
         return yaml.load(file_object, Loader=yaml.FullLoader)

@@ -9,7 +9,7 @@ if project_path not in sys.path:
 
 from umpyutl import read
 
-class UmpyUtlTest(unittest.TestCase):
+class UmpyUtlReadTest(unittest.TestCase):
     """umpyutl functional tests."""
 
     def setUp(self):

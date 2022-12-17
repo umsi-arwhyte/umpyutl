@@ -8,9 +8,9 @@ project_path = Path.cwd().parent
 if project_path not in sys.path:
     sys.path.insert(0, str(project_path))
 
-from umpyutl import http, read, write
+from umpyutl import http
 
-class UmpyUtlTest(unittest.TestCase):
+class UmpyUtlHttpTest(unittest.TestCase):
     """umpyutl functional tests."""
 
     def setUp(self):
