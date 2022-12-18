@@ -17,6 +17,7 @@ def get_resource(
     Returns:
         Response: contains a server’s response to an HTTP request.
     """
+
     if params:
         return req.get(url, params, timeout=timeout)
     else:
@@ -38,4 +39,5 @@ def get_resource_json(
     Returns:
         dict | list: dictionary or list representation of the decoded JSON.
     """
+
     return get_resource(url, params, timeout=timeout).json()
