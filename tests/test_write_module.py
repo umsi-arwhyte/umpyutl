@@ -16,8 +16,8 @@ class UmpyUtlWriteTest(unittest.TestCase):
         """Default values."""
         self.fixtures_path = './fixtures'
 
-    def test_01_write_csv(self):
-        """write.write_csv test"""
+    def test_01_to_csv(self):
+        """write.to_csv test"""
 
         fxt_headers = ['Date', 'Week', 'County', 'State', 'Vax_Level', 'Series_Complete_Pop_Pct']
         fxt_counties = [
@@ -27,7 +27,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             ]
 
         filepath = './output/vax_counties.csv'
-        write.write_csv(filepath, fxt_counties, fxt_headers)
+        write.to_csv(filepath, fxt_counties, fxt_headers)
 
         fxt_vax_counties = [
             ['Date', 'Week', 'County', 'State', 'Vax_Level', 'Series_Complete_Pop_Pct'],
@@ -37,7 +37,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
         ]
 
         # Read file
-        vax_counties = read.read_csv(filepath)
+        vax_counties = read.from_csv(filepath)
 
         self.assertIsInstance(
             vax_counties,
@@ -52,8 +52,8 @@ class UmpyUtlWriteTest(unittest.TestCase):
             fxt_vax_counties,
             'Error: file contents do not match fixture value')
 
-    def test_02_write_dicts_to_csv(self):
-        """write.write_dicts_to_csv test"""
+    def test_02_dicts_to_csv(self):
+        """write.dicts_to_csv test"""
 
         fxt_passengers = [
             {
@@ -77,10 +77,10 @@ class UmpyUtlWriteTest(unittest.TestCase):
             ]
 
         filepath = './output/passengers.csv'
-        write.write_dicts_to_csv(filepath, fxt_passengers, fxt_passengers[0].keys())
+        write.dicts_to_csv(filepath, fxt_passengers, fxt_passengers[0].keys())
 
         # Read file
-        passengers = read.read_csv_to_dicts(filepath)
+        passengers = read.from_csv_to_dicts(filepath)
 
         self.assertIsInstance(
             passengers,
@@ -95,8 +95,8 @@ class UmpyUtlWriteTest(unittest.TestCase):
             fxt_passengers,
             'Error: file contents do not match fixture value')
 
-    def test_03_write_file(self):
-        """write.write_file test"""
+    def test_03_to_txt(self):
+        """write.to_txt test"""
 
         fxt_opening_crawl = [
             ("It is a period of civil war. Rebel spaceships, striking from a hidden base, have won \
@@ -110,10 +110,10 @@ class UmpyUtlWriteTest(unittest.TestCase):
         ]
 
         filepath = './output/episode_iv_opening_crawl.txt'
-        write.write_file(filepath, fxt_opening_crawl)
+        write.to_txt(filepath, fxt_opening_crawl)
 
         # Read file
-        opening_crawl = read.read_file(filepath)
+        opening_crawl = read.from_txt(filepath)
 
         self.assertIsInstance(
             opening_crawl,
@@ -128,8 +128,8 @@ class UmpyUtlWriteTest(unittest.TestCase):
             fxt_opening_crawl,
             'Error: file contents do not match fixture value')
 
-    def test_04_write_json(self):
-        """write.write_json test"""
+    def test_04_to_json(self):
+        """write.to_json test"""
 
         fxt_crew_members = {
             'pilot': {
@@ -205,10 +205,10 @@ class UmpyUtlWriteTest(unittest.TestCase):
             }
 
         filepath = './output/crew_members.json'
-        write.write_json(filepath, fxt_crew_members)
+        write.to_json(filepath, fxt_crew_members)
 
         # Read file
-        crew_members = read.read_json(filepath)
+        crew_members = read.from_json(filepath)
 
         self.assertIsInstance(
             crew_members,

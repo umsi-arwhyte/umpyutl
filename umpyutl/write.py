@@ -4,7 +4,7 @@ import requests
 from typing import List, Optional, Tuple
 
 
-def write_csv(
+def to_csv(
     filepath: str,
     data: list | tuple,
     headers: Optional[list | tuple] = None,
@@ -40,7 +40,7 @@ def write_csv(
             writer.writerows(data)
 
 
-def write_dicts_to_csv(
+def dicts_to_csv(
     filepath: str,
     data: List[dict],
     fieldnames: list | tuple,
@@ -54,7 +54,7 @@ def write_dicts_to_csv(
 
     WARN: This function is not designed to handle dictionaries that include key-value
     pairs in which the values are sequences or dictionaries. In such cases, serialize the
-    object as JSON and write to a file using < write.write_json >.
+    object as JSON and write to a file using < write.to_json >.
 
     Parameters:
         filepath (str): path to target file (if file does not exist it will be created)
@@ -73,34 +73,7 @@ def write_dicts_to_csv(
         writer.writerows(data)
 
 
-def write_file(
-    filepath: str,
-    data: List[str] | Tuple[str],
-    encoding: str = 'utf-8',
-    newline: bool = True
-    ) -> None:
-    """Write content to a target file encoded as UTF-8. If optional newline is specified
-    append each line with a newline escape sequence (`\n`).
-
-    Parameters:
-        filepath (str): path to target file (if file does not exist it will be created)
-        data (list | tuple): sequence of strings comprising the content to be written to the
-                             target file
-        encoding (str): name of encoding used to encode the file.
-        newline (bool): add newline escape sequence to line
-
-    Returns:
-        None
-    """
-    with open(filepath, 'w', encoding=encoding) as file_obj:
-        if newline:
-            for line in data:
-                file_obj.write(f"{line}\n") # add newline
-        else:
-            file_obj.writelines(data) # write sequence to file
-
-
-def write_file_response_chunked(
+def to_file_response_chunked(
     filepath: str,
     response: requests.Response,
     mode: str = 'w',
@@ -125,7 +98,7 @@ def write_file_response_chunked(
             file_object.write(chunk)
 
 
-def write_json(
+def to_json(
     filepath: str,
     data: dict | list,
     encoding: str = 'utf-8',
@@ -147,3 +120,30 @@ def write_json(
     """
     with open(filepath, 'w', encoding=encoding) as file_obj:
         json.dump(data, file_obj, ensure_ascii=ensure_ascii, indent=indent)
+
+
+def to_txt(
+    filepath: str,
+    data: List[str] | Tuple[str],
+    encoding: str = 'utf-8',
+    newline: bool = True
+    ) -> None:
+    """Write content to a target file encoded as UTF-8. If optional newline is specified
+    append each line with a newline escape sequence (`\n`).
+
+    Parameters:
+        filepath (str): path to target file (if file does not exist it will be created)
+        data (list | tuple): sequence of strings comprising the content to be written to the
+                             target file
+        encoding (str): name of encoding used to encode the file.
+        newline (bool): add newline escape sequence to line
+
+    Returns:
+        None
+    """
+    with open(filepath, 'w', encoding=encoding) as file_obj:
+        if newline:
+            for line in data:
+                file_obj.write(f"{line}\n") # add newline
+        else:
+            file_obj.writelines(data) # write sequence to file

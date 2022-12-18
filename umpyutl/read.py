@@ -65,6 +65,24 @@ def from_csv_to_dicts(
             return [dict(row) for row in reader]
 
 
+def from_json(
+    filepath: str,
+    encoding: str = 'utf-8'
+    ) -> dict | list:
+    """Reads a JSON document, decodes the file content, and returns a list or dictionary if
+    provided with a valid filepath.
+
+    Parameters:
+        filepath (str): absolute or relative path to source file
+        encoding (str): name of encoding used to decode the file
+
+    Returns:
+        dict | list: dict or list representations of the decoded JSON document
+    """
+    with open(filepath, 'r', encoding=encoding) as file_obj:
+        return json.load(file_obj)
+
+
 def from_txt(
     filepath: str,
     encoding: str = 'utf-8',
@@ -86,24 +104,6 @@ def from_txt(
             return [line.strip() for line in file_obj]
         else:
             return file_obj.readlines()
-
-
-def from_json(
-    filepath: str,
-    encoding: str = 'utf-8'
-    ) -> dict | list:
-    """Reads a JSON document, decodes the file content, and returns a list or dictionary if
-    provided with a valid filepath.
-
-    Parameters:
-        filepath (str): absolute or relative path to source file
-        encoding (str): name of encoding used to decode the file
-
-    Returns:
-        dict | list: dict or list representations of the decoded JSON document
-    """
-    with open(filepath, 'r', encoding=encoding) as file_obj:
-        return json.load(file_obj)
 
 
 def from_yaml(filepath: str) -> dict | list:
