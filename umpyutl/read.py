@@ -4,7 +4,7 @@ import yaml
 from typing import List, OrderedDict
 
 
-def read_csv(
+def from_csv(
     filepath: str,
     encoding: str = 'utf-8',
     newline: str = '',
@@ -15,9 +15,9 @@ def read_csv(
     wherein each nested list represents a single row from the input file.
 
     WARN: If a byte order mark (BOM) is encountered at the beginning of the first line of decoded
-    text, call < read_csv > and pass 'utf-8-sig' as the < encoding > argument.
+    text, call < from_csv > and pass 'utf-8-sig' as the < encoding > argument.
 
-    WARN: If newline='' is not specified, newlines '\n' or '\r\n' embedded inside quoted fields
+    WARN: If newline='' is not specified, newlines '\n' or '\r\n' embedded inside quoted fields
     may not be interpreted correctly by the csv.reader.
 
     Parameters:
@@ -35,7 +35,7 @@ def read_csv(
         return [row for row in reader]
 
 
-def read_csv_to_dicts(
+def from_csv_to_dicts(
     filepath: str,
     encoding: str = 'utf-8',
     newline: str = '',
@@ -59,14 +59,13 @@ def read_csv_to_dicts(
      """
     with open(filepath, 'r', newline=newline, encoding=encoding) as file_obj:
         reader = csv.DictReader(file_obj, delimiter=delimiter)
-
         if ordered:
             return [row for row in reader]
         else:
             return [dict(row) for row in reader]
 
 
-def read_file(
+def from_txt(
     filepath: str,
     encoding: str = 'utf-8',
     strip: bool = True
@@ -89,7 +88,7 @@ def read_file(
             return file_obj.readlines()
 
 
-def read_json(
+def from_json(
     filepath: str,
     encoding: str = 'utf-8'
     ) -> dict | list:
@@ -107,7 +106,7 @@ def read_json(
         return json.load(file_obj)
 
 
-def read_yaml(filepath: str) -> dict | list:
+def from_yaml(filepath: str) -> dict | list:
     """Read a YAML (Yet Another Markup Language) file given a valid filepath.
 
     Parameters:

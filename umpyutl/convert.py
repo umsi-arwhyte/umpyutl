@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-def convert_to_float(value: str) -> float | Any:
+def str_to_float(value: str) -> float | Any:
     """Attempts to convert a string, number, or boolean < value > in the < try > block to a float.
     Can also convert numbers masquerading as strings that include one or more thousand separator
     commas (e.g., "5,000,000").
@@ -20,7 +20,7 @@ def convert_to_float(value: str) -> float | Any:
         return value
 
 
-def convert_to_int(value: str) -> int | Any:
+def str_to_int(value: str) -> int | Any:
     """Attempts to convert a string, number boolean < value > in the < try > block to an integer.
     Can also convert numbers masquerading as strings that include one or more thousand separator
     commas (e.g., "5,000,000") or a period that designates a fractional component
@@ -41,7 +41,7 @@ def convert_to_int(value: str) -> int | Any:
         return value
 
 
-def convert_to_list(value: str, delimiter: Optional[str] = None)  -> list | Any:
+def str_to_list(value: str, delimiter: Optional[str] = None)  -> list | Any:
     """Attempts to convert a string < value > to a list in the < try > block using the provided
     < delimiter >. Removes leading/trailing spaces before converting < value > to a list.
 

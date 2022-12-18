@@ -16,36 +16,36 @@ class UmpyUtlReadTest(unittest.TestCase):
         """Default values."""
         self.fixtures_path = './fixtures'
 
-    def test_01_read_csv(self):
-        """read.read_csv test"""
+    def test_01_from_csv(self):
+        """read.from_csv test"""
 
-        planets = read.read_csv(f"{self.fixtures_path}/wookieepedia_planets.csv")
+        planets = read.from_csv(f"{self.fixtures_path}/wookieepedia_planets.csv")
         self.assertIsInstance(planets, list, 'Error: planets is not a list.')
 
-    def test_02_read_csv_to_dicts(self):
-        """read.read_csv_to_dicts test"""
+    def test_02_from_csv_to_dicts(self):
+        """read.from_csv_to_dicts test"""
 
-        starships = read.read_csv_to_dicts(f"{self.fixtures_path}/wookieepedia_starships.csv")
+        starships = read.from_csv_to_dicts(f"{self.fixtures_path}/wookieepedia_starships.csv")
         self.assertIsInstance(starships, list, 'Error: starships is not a list.')
         self.assertIsInstance(starships[0], dict, 'Error: starships[0] is not a dict.')
 
-    def test_03_read_file(self):
-        """read.read_file test"""
+    def test_03_from_txt(self):
+        """read.from_txt test"""
 
-        speech = read.read_file(f"{self.fixtures_path}/mandela-rivonia_trial-verbatim.txt")
+        speech = read.from_txt(f"{self.fixtures_path}/mandela-rivonia_trial-verbatim.txt")
         self.assertIsInstance(speech, list, 'Error: speech is not a list.')
         self.assertEqual(speech[2], 'Transcript', "Error: speech[2] does not equal 'Transcript'")
 
     def test_04_read_json(self):
         """read.read_json test"""
 
-        people = read.read_csv(f"{self.fixtures_path}/wookieepedia_people.json")
+        people = read.from_json(f"{self.fixtures_path}/wookieepedia_people.json")
         self.assertIsInstance(people, list, 'Error: people is not a list.')
 
-    def test_05_read_yaml(self):
-        """read.read_yaml test"""
+    def test_05_from_yaml(self):
+        """read.from_yaml test"""
 
-        config = read.read_yaml(f"{self.fixtures_path}/loc.yml")
+        config = read.from_yaml(f"{self.fixtures_path}/loc.yml")
         self.assertIsInstance(config, dict, 'Error: config is not a dict.')
         self.assertIsInstance(config['maps'], dict, "Error: config['maps'] is not a dict.")
         self.assertEqual(
