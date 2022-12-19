@@ -9,9 +9,9 @@ def dicts_to_csv(
     filepath: str,
     data: List[dict],
     fieldnames: list | tuple,
-    encoding: str = 'utf-8',
-    newline: str = ''
-    ) -> None:
+    encoding: str = "utf-8",
+    newline: str = "",
+) -> None:
     """
     Writes dictionary data to a target CSV file as row data using the csv.DictWriter().
     The passed in fieldnames list is used by the DictWriter() to determine the order
@@ -32,7 +32,8 @@ def dicts_to_csv(
     Returns:
         None
     """
-    with open(filepath, 'w', encoding=encoding, newline=newline) as file_obj:
+
+    with open(filepath, "w", encoding=encoding, newline=newline) as file_obj:
         writer = csv.DictWriter(file_obj, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
@@ -42,9 +43,9 @@ def to_csv(
     filepath: str,
     data: list | tuple,
     headers: Optional[list | tuple] = None,
-    encoding: str = 'utf-8',
-    newline: str = ''
-    ) -> None:
+    encoding: str = "utf-8",
+    newline: str = "",
+) -> None:
     """
     Writes data to a target CSV file. Column headers are written as the first
     row of the CSV file if optional headers are specified.
@@ -65,7 +66,7 @@ def to_csv(
         None
     """
 
-    with open(filepath, 'w', encoding=encoding, newline=newline) as file_obj:
+    with open(filepath, "w", encoding=encoding, newline=newline) as file_obj:
         writer = csv.writer(file_obj)
         if headers:
             writer.writerow(headers)
@@ -76,11 +77,8 @@ def to_csv(
 
 
 def to_file_response_chunked(
-    filepath: str,
-    response: requests.Response,
-    mode: str = 'w',
-    chunk_size: int = 1024
-    ) -> None:
+    filepath: str, response: requests.Response, mode: str = "w", chunk_size: int = 1024
+) -> None:
     """Writes < requests.Response > to a target file as a stream of data chunks.
     Override the optional write mode value if binary content <class 'bytes'> is to
     be written to file (i.e., mode='wb') or an append operation is intended on an
@@ -104,10 +102,10 @@ def to_file_response_chunked(
 def to_json(
     filepath: str,
     data: dict | list,
-    encoding: str = 'utf-8',
+    encoding: str = "utf-8",
     ensure_ascii: bool = False,
-    indent: int = 2
-    ) -> None:
+    indent: int = 2,
+) -> None:
     """Serializes object as JSON. Writes content to the provided filepath.
 
     Parameters:
@@ -122,16 +120,16 @@ def to_json(
         None
     """
 
-    with open(filepath, 'w', encoding=encoding) as file_obj:
+    with open(filepath, "w", encoding=encoding) as file_obj:
         json.dump(data, file_obj, ensure_ascii=ensure_ascii, indent=indent)
 
 
 def to_txt(
     filepath: str,
     data: List[str] | Tuple[str],
-    encoding: str = 'utf-8',
-    newline: bool = True
-    ) -> None:
+    encoding: str = "utf-8",
+    newline: bool = True,
+) -> None:
     """Write content to a target file encoded as UTF-8. If optional newline is specified
     append each line with a newline escape sequence (`\n`).
 
@@ -146,21 +144,21 @@ def to_txt(
         None
     """
 
-    with open(filepath, 'w', encoding=encoding) as file_obj:
+    with open(filepath, "w", encoding=encoding) as file_obj:
         if newline:
             for line in data:
-                file_obj.write(f"{line}\n") # add newline
+                file_obj.write(f"{line}\n")  # add newline
         else:
-            file_obj.writelines(data) # write sequence to file
+            file_obj.writelines(data)  # write sequence to file
 
 
 def write_csv(
     filepath: str,
     data: list | tuple,
     headers: Optional[list | tuple] = None,
-    encoding: str = 'utf-8',
-    newline: str = ''
-    ) -> None:
+    encoding: str = "utf-8",
+    newline: str = "",
+) -> None:
     """
 
     Writes data to a target CSV file. Column headers are written as the first
@@ -183,9 +181,10 @@ def write_csv(
     """
 
     warn(
-        'write_csv() is deprecated and will be removed from umpyutl 3.0.0. Use to_csv().',
+        "write_csv() is deprecated and will be removed from umpyutl 3.0.0. Use to_csv().",
         DeprecationWarning,
-        stacklevel=2)
+        stacklevel=2,
+    )
 
     return to_csv(filepath, data, headers, encoding, newline)
 
@@ -194,9 +193,9 @@ def write_dicts_to_csv(
     filepath: str,
     data: List[dict],
     fieldnames: list | tuple,
-    encoding: str = 'utf-8',
-    newline: str = ''
-    ) -> None:
+    encoding: str = "utf-8",
+    newline: str = "",
+) -> None:
     """
     Writes dictionary data to a target CSV file as row data using the csv.DictWriter().
     The passed in fieldnames list is used by the DictWriter() to determine the order
@@ -219,9 +218,10 @@ def write_dicts_to_csv(
     """
 
     warn(
-        'write_dicts_to_csv() is deprecated and will be removed from umpyutl 3.0.0. Use dicts_to_csv().',
+        "write_dicts_to_csv() is deprecated and will be removed from umpyutl 3.0.0. Use dicts_to_csv().",
         DeprecationWarning,
-        stacklevel=2)
+        stacklevel=2,
+    )
 
     return dicts_to_csv(filepath, data, fieldnames, encoding, newline)
 
@@ -229,9 +229,9 @@ def write_dicts_to_csv(
 def write_file(
     filepath: str,
     data: List[str] | Tuple[str],
-    encoding: str = 'utf-8',
-    newline: bool = True
-    ) -> None:
+    encoding: str = "utf-8",
+    newline: bool = True,
+) -> None:
     """Write content to a target file encoded as UTF-8. If optional newline is specified
     append each line with a newline escape sequence (`\n`).
 
@@ -247,19 +247,17 @@ def write_file(
     """
 
     warn(
-        'write_file() is deprecated and will be removed from umpyutl 3.0.0. Use to_txt().',
+        "write_file() is deprecated and will be removed from umpyutl 3.0.0. Use to_txt().",
         DeprecationWarning,
-        stacklevel=2)
+        stacklevel=2,
+    )
 
     return to_txt(filepath, data, encoding, newline)
 
 
 def write_file_response_chunked(
-    filepath: str,
-    response: requests.Response,
-    mode: str = 'w',
-    chunk_size: int = 1024
-    ) -> None:
+    filepath: str, response: requests.Response, mode: str = "w", chunk_size: int = 1024
+) -> None:
     """Writes < requests.Response > to a target file as a stream of data chunks.
     Override the optional write mode value if binary content <class 'bytes'> is to
     be written to file (i.e., mode='wb') or an append operation is intended on an
@@ -276,9 +274,10 @@ def write_file_response_chunked(
     """
 
     warn(
-        'write_file_response_chunked() is deprecated and will be removed from umpyutl 3.0.0. Use to_file_response_chunked().',
+        "write_file_response_chunked() is deprecated and will be removed from umpyutl 3.0.0. Use to_file_response_chunked().",
         DeprecationWarning,
-        stacklevel=2)
+        stacklevel=2,
+    )
 
     return to_file_response_chunked(filepath, response, mode, chunk_size)
 
@@ -286,10 +285,10 @@ def write_file_response_chunked(
 def write_json(
     filepath: str,
     data: dict | list,
-    encoding: str = 'utf-8',
+    encoding: str = "utf-8",
     ensure_ascii: bool = False,
-    indent: int = 2
-    ) -> None:
+    indent: int = 2,
+) -> None:
     """Serializes object as JSON. Writes content to the provided filepath.
 
     Parameters:
@@ -305,8 +304,9 @@ def write_json(
     """
 
     warn(
-        'write_json() is deprecated and will be removed from umpyutl 3.0.0. Use to_json().',
+        "write_json() is deprecated and will be removed from umpyutl 3.0.0. Use to_json().",
         DeprecationWarning,
-        stacklevel=2)
+        stacklevel=2,
+    )
 
     return to_json(filepath, data, encoding, ensure_ascii, indent)
