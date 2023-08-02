@@ -7,7 +7,7 @@ project_path = Path.cwd().parent
 if project_path not in sys.path:
     sys.path.insert(0, str(project_path))
 
-from umpyutl import read
+from src.umpyutl import read
 
 
 class UmpyUtlReadTest(unittest.TestCase):

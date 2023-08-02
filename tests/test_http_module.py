@@ -8,7 +8,7 @@ project_path = Path.cwd().parent
 if project_path not in sys.path:
     sys.path.insert(0, str(project_path))
 
-from umpyutl import http
+from src.umpyutl import http
 
 
 class UmpyUtlHttpTest(unittest.TestCase):
