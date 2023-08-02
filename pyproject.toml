@@ -34,9 +34,14 @@ Homepage = "https://github.com/umsi-arwhyte/umpyutl"
 line-length = 100
 
 [tool.hatch.version]
-path = "umpyutl/__init__.py"
+path = "src/umpyutl/__about__.py"
 
 [tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/.tests",
+    "/.venv"
+]
 include = [
-    "/umpyutl",
+    "src/umpyutl",
 ]
