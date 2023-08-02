@@ -2,9 +2,7 @@ import requests as req
 from typing import Optional
 
 
-def get_resource(
-    url: str, params: Optional[dict] = None, timeout: int = 10
-) -> req.Response:
+def get_resource(url: str, params: Optional[dict] = None, timeout: int = 10) -> req.Response:
     """Returns a response object.
 
     Parameters:
@@ -22,9 +20,7 @@ def get_resource(
         return req.get(url, timeout=timeout)
 
 
-def get_resource_json(
-    url: str, params: Optional[dict] = None, timeout: int = 10
-) -> dict | list:
+def get_resource_json(url: str, params: Optional[dict] = None, timeout: int = 10) -> dict | list:
     """Returns a response object decoded into a dictionary or list.
 
     Parameters:
