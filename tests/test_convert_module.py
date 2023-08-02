@@ -2,18 +2,20 @@ import sys
 import unittest
 
 from pathlib import Path
-
-project_path = Path.cwd().parent
-if project_path not in sys.path:
-    sys.path.insert(0, str(project_path))
-
 from src.umpyutl import convert
+
+# project_path = Path.cwd().parent
+# if project_path not in sys.path:
+#     sys.path.insert(0, str(project_path))
+
+PARENT_PATH = Path(__file__).parent.resolve()
 
 
 class UmpyUtlConvertTest(unittest.TestCase):
     def setUp(self):
         """Default values."""
-        self.fixtures_path = "./fixtures"
+        self.fixtures_path = PARENT_PATH.joinpath("fixtures")
+        self.output_path = PARENT_PATH.joinpath("output")
 
     def test_01_str_to_float_str_num(self):
         """str_to_float string number"""

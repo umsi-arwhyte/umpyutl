@@ -1,13 +1,11 @@
 import requests
-import sys
 import unittest
 
-from pathlib import Path
 from src.umpyutl import http
 
-project_path = Path.cwd().parent
-if project_path not in sys.path:
-    sys.path.insert(0, str(project_path))
+# project_path = Path.cwd().parent
+# if project_path not in sys.path:
+#     sys.path.insert(0, str(project_path))
 
 
 class UmpyUtlHttpTest(unittest.TestCase):

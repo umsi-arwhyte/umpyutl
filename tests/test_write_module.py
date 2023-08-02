@@ -4,9 +4,11 @@ import unittest
 from pathlib import Path
 from src.umpyutl import read, write
 
-project_path = Path.cwd().parent
-if project_path not in sys.path:
-    sys.path.insert(0, str(project_path))
+# project_path = Path.cwd().parent
+# if project_path not in sys.path:
+#     sys.path.insert(0, str(project_path))
+
+PARENT_PATH = Path(__file__).parent.resolve()
 
 
 class UmpyUtlWriteTest(unittest.TestCase):
@@ -14,7 +16,8 @@ class UmpyUtlWriteTest(unittest.TestCase):
 
     def setUp(self):
         """Default values."""
-        self.fixtures_path = "./fixtures"
+        self.fixtures_path = PARENT_PATH.joinpath("fixtures")
+        self.output_path = PARENT_PATH.joinpath("output")
 
     def test_01_to_csv(self):
         """write.to_csv test"""
@@ -33,7 +36,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             ["02/19/2022", "7", "Oakland County", "MI", "Moderate", "65.4"],
         ]
 
-        filepath = "./output/vax_counties.csv"
+        filepath = self.output_path.joinpath("vax_counties").with_suffix(".csv")
         write.to_csv(filepath, fxt_counties, fxt_headers)
 
         fxt_vax_counties = [
@@ -78,7 +81,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             },
         ]
 
-        filepath = "./output/passengers.csv"
+        filepath = self.output_path.joinpath("passengers").with_suffix(".csv")
         write.dicts_to_csv(filepath, fxt_passengers, fxt_passengers[0].keys())
 
         # Read file
@@ -112,7 +115,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             ),
         ]
 
-        filepath = "./output/episode_iv_opening_crawl.txt"
+        filepath = self.output_path.joinpath("episode_iv_opening_crawl").with_suffix(".txt")
         write.to_txt(filepath, fxt_opening_crawl)
 
         # Read file
@@ -194,7 +197,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             },
         }
 
-        filepath = "./output/crew_members.json"
+        filepath = self.output_path.joinpath("crew_members").with_suffix(".json")
         write.to_json(filepath, fxt_crew_members)
 
         # Read file
@@ -228,7 +231,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             ["02/19/2022", "7", "Oakland County", "MI", "Moderate", "65.4"],
         ]
 
-        filepath = "./output/vax_counties.csv"
+        filepath = self.output_path.joinpath("vax_counties").with_suffix(".csv")
         write.write_csv(filepath, fxt_counties, fxt_headers)
 
         fxt_vax_counties = [
@@ -273,7 +276,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             },
         ]
 
-        filepath = "./output/passengers.csv"
+        filepath = self.output_path.joinpath("passengers").with_suffix(".csv")
         write.write_dicts_to_csv(filepath, fxt_passengers, fxt_passengers[0].keys())
 
         # Read file
@@ -307,7 +310,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             ),
         ]
 
-        filepath = "./output/episode_iv_opening_crawl.txt"
+        filepath = self.output_path.joinpath("episode_iv_opening_crawl").with_suffix(".txt")
         write.write_file(filepath, fxt_opening_crawl)
 
         # Read file
@@ -389,7 +392,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
             },
         }
 
-        filepath = "./output/crew_members.json"
+        filepath = self.output_path.joinpath("crew_members").with_suffix(".json")
         write.write_json(filepath, fxt_crew_members)
 
         # Read file
