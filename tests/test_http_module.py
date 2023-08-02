@@ -3,12 +3,11 @@ import sys
 import unittest
 
 from pathlib import Path
+from src.umpyutl import http
 
 project_path = Path.cwd().parent
 if project_path not in sys.path:
     sys.path.insert(0, str(project_path))
-
-from src.umpyutl import http
 
 
 class UmpyUtlHttpTest(unittest.TestCase):
@@ -184,9 +183,7 @@ class UmpyUtlHttpTest(unittest.TestCase):
             ],
         }
 
-        response = http.get_resource_json(
-            f"{self.base_url}/planets/", {"search": "hoth"}
-        )
+        response = http.get_resource_json(f"{self.base_url}/planets/", {"search": "hoth"})
 
         self.assertIsInstance(response, dict, "Error: response is not a dict.")
         self.assertEqual(

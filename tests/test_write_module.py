@@ -2,12 +2,11 @@ import sys
 import unittest
 
 from pathlib import Path
+from src.umpyutl import read, write
 
 project_path = Path.cwd().parent
 if project_path not in sys.path:
     sys.path.insert(0, str(project_path))
-
-from src.umpyutl import read, write
 
 
 class UmpyUtlWriteTest(unittest.TestCase):
@@ -48,9 +47,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
         vax_counties = read.from_csv(filepath)
 
         self.assertIsInstance(vax_counties, list, "Error: vax_counties is not a list.")
-        self.assertIsInstance(
-            vax_counties[-1], list, "Error: vax_counties[-1] is not a list."
-        )
+        self.assertIsInstance(vax_counties[-1], list, "Error: vax_counties[-1] is not a list.")
         self.assertEqual(
             vax_counties,
             fxt_vax_counties,
@@ -88,9 +85,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
         passengers = read.from_csv_to_dicts(filepath)
 
         self.assertIsInstance(passengers, list, "Error: passengers is not a list.")
-        self.assertIsInstance(
-            passengers[-1], dict, "Error: passengers[-1] is not a dict."
-        )
+        self.assertIsInstance(passengers[-1], dict, "Error: passengers[-1] is not a dict.")
         self.assertEqual(
             passengers,
             fxt_passengers,
@@ -123,12 +118,8 @@ class UmpyUtlWriteTest(unittest.TestCase):
         # Read file
         opening_crawl = read.from_txt(filepath)
 
-        self.assertIsInstance(
-            opening_crawl, list, "Error: opening_crawl is not a list."
-        )
-        self.assertIsInstance(
-            opening_crawl[-1], str, "Error: opening_crawl[-1] is not a str."
-        )
+        self.assertIsInstance(opening_crawl, list, "Error: opening_crawl is not a list.")
+        self.assertIsInstance(opening_crawl[-1], str, "Error: opening_crawl[-1] is not a str.")
         self.assertEqual(
             opening_crawl,
             fxt_opening_crawl,
@@ -251,9 +242,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
         vax_counties = read.read_csv(filepath)
 
         self.assertIsInstance(vax_counties, list, "Error: vax_counties is not a list.")
-        self.assertIsInstance(
-            vax_counties[-1], list, "Error: vax_counties[-1] is not a list."
-        )
+        self.assertIsInstance(vax_counties[-1], list, "Error: vax_counties[-1] is not a list.")
         self.assertEqual(
             vax_counties,
             fxt_vax_counties,
@@ -291,9 +280,7 @@ class UmpyUtlWriteTest(unittest.TestCase):
         passengers = read.read_csv_to_dicts(filepath)
 
         self.assertIsInstance(passengers, list, "Error: passengers is not a list.")
-        self.assertIsInstance(
-            passengers[-1], dict, "Error: passengers[-1] is not a dict."
-        )
+        self.assertIsInstance(passengers[-1], dict, "Error: passengers[-1] is not a dict.")
         self.assertEqual(
             passengers,
             fxt_passengers,
@@ -326,12 +313,8 @@ class UmpyUtlWriteTest(unittest.TestCase):
         # Read file
         opening_crawl = read.read_file(filepath)
 
-        self.assertIsInstance(
-            opening_crawl, list, "Error: opening_crawl is not a list."
-        )
-        self.assertIsInstance(
-            opening_crawl[-1], str, "Error: opening_crawl[-1] is not a str."
-        )
+        self.assertIsInstance(opening_crawl, list, "Error: opening_crawl is not a list.")
+        self.assertIsInstance(opening_crawl[-1], str, "Error: opening_crawl[-1] is not a str.")
         self.assertEqual(
             opening_crawl,
             fxt_opening_crawl,
