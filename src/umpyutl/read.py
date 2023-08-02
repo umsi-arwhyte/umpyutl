@@ -33,8 +33,7 @@ def from_csv(
     """
 
     with open(filepath, "r", encoding=encoding, newline=newline) as file_obj:
-        reader = csv.reader(file_obj, delimiter=delimiter)
-        return [row for row in reader]
+        return [row for row in csv.reader(file_obj, delimiter=delimiter)]
 
 
 def from_csv_to_dicts(
@@ -61,11 +60,10 @@ def from_csv_to_dicts(
     """
 
     with open(filepath, "r", newline=newline, encoding=encoding) as file_obj:
-        reader = csv.DictReader(file_obj, delimiter=delimiter)
         if ordered:
-            return [row for row in reader]
+            return [row for row in csv.DictReader(file_obj, delimiter=delimiter)]
         else:
-            return [dict(row) for row in reader]
+            return [dict(row) for row in csv.DictReader(file_obj, delimiter=delimiter)]
 
 
 def from_json(filepath: str, encoding: str = "utf-8") -> dict | list:
