@@ -1,12 +1,13 @@
 import csv
 import json
+import pathlib
 import yaml
 from typing import List, OrderedDict
 from warnings import warn
 
 
 def from_csv(
-    filepath: str,
+    filepath: pathlib.Path | str,
     encoding: str = "utf-8",
     newline: str = "",
     delimiter: str = ",",
@@ -22,7 +23,7 @@ def from_csv(
     may not be interpreted correctly by the csv.reader.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
@@ -37,7 +38,7 @@ def from_csv(
 
 
 def from_csv_to_dicts(
-    filepath: str,
+    filepath: pathlib.Path | str,
     encoding: str = "utf-8",
     newline: str = "",
     delimiter: str = ",",
@@ -48,7 +49,7 @@ def from_csv_to_dicts(
     in list is an OrderedDict which can be overridden.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
@@ -66,12 +67,12 @@ def from_csv_to_dicts(
             return [dict(row) for row in csv.DictReader(file_obj, delimiter=delimiter)]
 
 
-def from_json(filepath: str, encoding: str = "utf-8") -> dict | list:
+def from_json(filepath: pathlib.Path | str, encoding: str = "utf-8") -> dict | list:
     """Reads a JSON document, decodes the file content, and returns a list or dictionary if
     provided with a valid filepath.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
 
     Returns:
@@ -82,12 +83,14 @@ def from_json(filepath: str, encoding: str = "utf-8") -> dict | list:
         return json.load(file_obj)
 
 
-def from_txt(filepath: str, encoding: str = "utf-8", strip: bool = True) -> List[str]:
+def from_txt(
+    filepath: pathlib.Path | str, encoding: str = "utf-8", strip: bool = True
+) -> List[str]:
     """Read text file line by line. Remove whitespace and trailing newline
     escape character.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file.
         strip (bool): remove white space, newline escape characters
 
@@ -102,11 +105,11 @@ def from_txt(filepath: str, encoding: str = "utf-8", strip: bool = True) -> List
             return file_obj.readlines()
 
 
-def from_yaml(filepath: str) -> dict | list:
+def from_yaml(filepath: pathlib.Path | str) -> dict | list:
     """Read a YAML (Yet Another Markup Language) file given a valid filepath.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
 
     Returns:
         dict | list: typically a list or dictionary representation of the file object
@@ -117,7 +120,7 @@ def from_yaml(filepath: str) -> dict | list:
 
 
 def read_csv(
-    filepath: str,
+    filepath: pathlib.Path | str,
     encoding: str = "utf-8",
     newline: str = "",
     delimiter: str = ",",
@@ -133,7 +136,7 @@ def read_csv(
     may not be interpreted correctly by the csv.reader.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
@@ -153,7 +156,7 @@ def read_csv(
 
 
 def read_csv_to_dicts(
-    filepath: str,
+    filepath: pathlib.Path | str,
     encoding: str = "utf-8",
     newline: str = "",
     delimiter: str = ",",
@@ -164,7 +167,7 @@ def read_csv_to_dicts(
     in list is an OrderedDict which can be overridden.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
@@ -184,12 +187,14 @@ def read_csv_to_dicts(
     return from_csv_to_dicts(filepath, encoding, newline, delimiter, ordered)
 
 
-def read_file(filepath: str, encoding: str = "utf-8", strip: bool = True) -> List[str]:
+def read_file(
+    filepath: pathlib.Path | str, encoding: str = "utf-8", strip: bool = True
+) -> List[str]:
     """Read text file line by line. Remove whitespace and trailing newline
     escape character.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file.
         strip (bool): remove white space, newline escape characters
 
@@ -206,12 +211,12 @@ def read_file(filepath: str, encoding: str = "utf-8", strip: bool = True) -> Lis
     return from_txt(filepath, encoding, strip)
 
 
-def read_json(filepath: str, encoding: str = "utf-8") -> dict | list:
+def read_json(filepath: pathlib.Path | str, encoding: str = "utf-8") -> dict | list:
     """Reads a JSON document, decodes the file content, and returns a list or dictionary if
     provided with a valid filepath.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
         encoding (str): name of encoding used to decode the file
 
     Returns:
@@ -227,11 +232,11 @@ def read_json(filepath: str, encoding: str = "utf-8") -> dict | list:
     return from_json(filepath, encoding)
 
 
-def read_yaml(filepath: str) -> dict | list:
+def read_yaml(filepath: pathlib.Path | str) -> dict | list:
     """Read a YAML (Yet Another Markup Language) file given a valid filepath.
 
     Parameters:
-        filepath (str): absolute or relative path to source file
+        filepath (pathlib.Path | str): absolute or relative path to source file
 
     Returns:
         dict | list: typically a list or dictionary representation of the file object
