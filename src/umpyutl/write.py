@@ -1,12 +1,13 @@
 import csv
 import json
+import pathlib
 import requests
 from typing import List, Optional, Tuple
 from warnings import warn
 
 
 def dicts_to_csv(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: List[dict],
     fieldnames: list | tuple,
     encoding: str = "utf-8",
@@ -22,7 +23,7 @@ def dicts_to_csv(
     object as JSON and write to a file using < write.to_json >.
 
     Parameters:
-        filepath (str): path to target file (if file does not exist it will be created)
+        filepath (pathlib.Path | str): path to target file (if file does not exist it will be created)
         data (list): dictionary content to be written to the target file
         fieldnames (seq): sequence specifing order in which key-value pairs are written to each row
         encoding (str): name of encoding used to encode the file
@@ -40,7 +41,7 @@ def dicts_to_csv(
 
 
 def to_csv(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: list | tuple,
     headers: Optional[list | tuple] = None,
     encoding: str = "utf-8",
@@ -50,12 +51,12 @@ def to_csv(
     Writes data to a target CSV file. Column headers are written as the first
     row of the CSV file if optional headers are specified.
 
-    WARN: If newline='' is not specified, newlines '\n' or '\r\n' embedded inside quoted
+    WARN: If newline='' is not specified, newlines '\n' or '\r\n' embedded inside quoted
     fields may not be interpreted correctly by the csv.reader. On platforms that utilize
     `\r\n` an extra `\r` will be added.
 
     Parameters:
-        filepath (str): path to target file (if file does not exist it will be created)
+        filepath (pathlib.Path | str): path to target file (if file does not exist it will be created)
         data (list | tuple): sequence to be written to the target file
         headers (seq): optional header row list or tuple
         encoding (str): name of encoding used to encode the file
@@ -77,7 +78,10 @@ def to_csv(
 
 
 def to_file_response_chunked(
-    filepath: str, response: requests.Response, mode: str = "w", chunk_size: int = 1024
+    filepath: pathlib.Path | str,
+    response: requests.Response,
+    mode: str = "w",
+    chunk_size: int = 1024,
 ) -> None:
     """Writes < requests.Response > to a target file as a stream of data chunks.
     Override the optional write mode value if binary content <class 'bytes'> is to
@@ -85,7 +89,7 @@ def to_file_response_chunked(
     existing file (i.e., mode='a' or 'ab').
 
     Parameters:
-        filepath (str): absolute or relative path to target file
+        filepath (pathlib.Path | str): absolute or relative path to target file
         response (requests.Response): data to be written to the target file
         mode (str): write operation mode
         chunk_size (int); size of data chunks to stream
@@ -100,7 +104,7 @@ def to_file_response_chunked(
 
 
 def to_json(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: dict | list,
     encoding: str = "utf-8",
     ensure_ascii: bool = False,
@@ -109,7 +113,7 @@ def to_json(
     """Serializes object as JSON. Writes content to the provided filepath.
 
     Parameters:
-        filepath (str): the path to the file
+        filepath (pathlib.Path | str): the path to the file
         data (dict | list): the data to be encoded as JSON and written to the file
         encoding (str): name of encoding used to encode the file
         ensure_ascii (str): if False non-ASCII characters are printed as is; otherwise
@@ -125,7 +129,7 @@ def to_json(
 
 
 def to_txt(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: List[str] | Tuple[str],
     encoding: str = "utf-8",
     newline: bool = True,
@@ -134,7 +138,7 @@ def to_txt(
     append each line with a newline escape sequence (`\n`).
 
     Parameters:
-        filepath (str): path to target file (if file does not exist it will be created)
+        filepath (pathlib.Path | str): path to target file (if file does not exist it will be created)
         data (list | tuple): sequence of strings comprising the content to be written to the
                              target file
         encoding (str): name of encoding used to encode the file.
@@ -153,7 +157,7 @@ def to_txt(
 
 
 def write_csv(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: list | tuple,
     headers: Optional[list | tuple] = None,
     encoding: str = "utf-8",
@@ -169,7 +173,7 @@ def write_csv(
     `\r\n` an extra `\r` will be added.
 
     Parameters:
-        filepath (str): path to target file (if file does not exist it will be created)
+        filepath (pathlib.Path | str): path to target file (if file does not exist it will be created)
         data (list | tuple): sequence to be written to the target file
         headers (seq): optional header row list or tuple
         encoding (str): name of encoding used to encode the file
@@ -190,7 +194,7 @@ def write_csv(
 
 
 def write_dicts_to_csv(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: List[dict],
     fieldnames: list | tuple,
     encoding: str = "utf-8",
@@ -206,7 +210,7 @@ def write_dicts_to_csv(
     object as JSON and write to a file using < write.write_json >.
 
     Parameters:
-        filepath (str): path to target file (if file does not exist it will be created)
+        filepath (pathlib.Path | str): path to target file (if file does not exist it will be created)
         data (list): dictionary content to be written to the target file
         fieldnames (seq): sequence specifing order in which key-value pairs are written to each row
         encoding (str): name of encoding used to encode the file
@@ -227,7 +231,7 @@ def write_dicts_to_csv(
 
 
 def write_file(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: List[str] | Tuple[str],
     encoding: str = "utf-8",
     newline: bool = True,
@@ -236,7 +240,7 @@ def write_file(
     append each line with a newline escape sequence (`\n`).
 
     Parameters:
-        filepath (str): path to target file (if file does not exist it will be created)
+        filepath (pathlib.Path | str): path to target file (if file does not exist it will be created)
         data (list | tuple): sequence of strings comprising the content to be written to the
                              target file
         encoding (str): name of encoding used to encode the file.
@@ -256,7 +260,10 @@ def write_file(
 
 
 def write_file_response_chunked(
-    filepath: str, response: requests.Response, mode: str = "w", chunk_size: int = 1024
+    filepath: pathlib.Path | str,
+    response: requests.Response,
+    mode: str = "w",
+    chunk_size: int = 1024,
 ) -> None:
     """Writes < requests.Response > to a target file as a stream of data chunks.
     Override the optional write mode value if binary content <class 'bytes'> is to
@@ -264,7 +271,7 @@ def write_file_response_chunked(
     existing file (i.e., mode='a' or 'ab').
 
     Parameters:
-        filepath (str): absolute or relative path to target file
+        filepath (pathlib.Path | str): absolute or relative path to target file
         response (requests.Response): data to be written to the target file
         mode (str): write operation mode
         chunk_size (int); size of data chunks to stream
@@ -283,7 +290,7 @@ def write_file_response_chunked(
 
 
 def write_json(
-    filepath: str,
+    filepath: pathlib.Path | str,
     data: dict | list,
     encoding: str = "utf-8",
     ensure_ascii: bool = False,
@@ -292,7 +299,7 @@ def write_json(
     """Serializes object as JSON. Writes content to the provided filepath.
 
     Parameters:
-        filepath (str): the path to the file
+        filepath (pathlib.Path | str): the path to the file
         data (dict | list): the data to be encoded as JSON and written to the file
         encoding (str): name of encoding used to encode the file
         ensure_ascii (str): if False non-ASCII characters are printed as is; otherwise
