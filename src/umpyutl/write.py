@@ -12,6 +12,7 @@ def dicts_to_csv(
     fieldnames: list | tuple,
     encoding: str = "utf-8",
     newline: str = "",
+    delimiter: str = ","
 ) -> None:
     """
     Writes dictionary data to a target CSV file as row data using the csv.DictWriter().
@@ -29,13 +30,14 @@ def dicts_to_csv(
         encoding (str): name of encoding used to encode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
+        delimiter (str): separator value
 
     Returns:
         None
     """
 
     with open(filepath, "w", encoding=encoding, newline=newline) as file_obj:
-        writer = csv.DictWriter(file_obj, fieldnames=fieldnames)
+        writer = csv.DictWriter(file_obj, fieldnames=fieldnames, delimiter=delimiter)
         writer.writeheader()
         writer.writerows(data)
 
@@ -46,6 +48,7 @@ def to_csv(
     headers: Optional[list | tuple] = None,
     encoding: str = "utf-8",
     newline: str = "",
+    delimiter: str = ","
 ) -> None:
     """
     Writes data to a target CSV file. Column headers are written as the first
@@ -62,13 +65,14 @@ def to_csv(
         encoding (str): name of encoding used to encode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
+        delimiter (str): separator value
 
     Returns:
         None
     """
 
     with open(filepath, "w", encoding=encoding, newline=newline) as file_obj:
-        writer = csv.writer(file_obj)
+        writer = csv.writer(file_obj, delimiter=delimiter)
         if headers:
             writer.writerow(headers)
             for row in data:
@@ -162,6 +166,7 @@ def write_csv(
     headers: Optional[list | tuple] = None,
     encoding: str = "utf-8",
     newline: str = "",
+    delimiter: str = ","
 ) -> None:
     """
 
@@ -179,6 +184,7 @@ def write_csv(
         encoding (str): name of encoding used to encode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
+        delimiter (str): separator value
 
     Returns:
         None
@@ -190,7 +196,7 @@ def write_csv(
         stacklevel=2,
     )
 
-    return to_csv(filepath, data, headers, encoding, newline)
+    return to_csv(filepath, data, headers, encoding, newline, delimiter)
 
 
 def write_dicts_to_csv(
@@ -199,6 +205,7 @@ def write_dicts_to_csv(
     fieldnames: list | tuple,
     encoding: str = "utf-8",
     newline: str = "",
+    delimiter: str = ","
 ) -> None:
     """
     Writes dictionary data to a target CSV file as row data using the csv.DictWriter().
@@ -216,6 +223,7 @@ def write_dicts_to_csv(
         encoding (str): name of encoding used to encode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
+        delimiter (str): separator value
 
     Returns:
         None
@@ -227,7 +235,7 @@ def write_dicts_to_csv(
         stacklevel=2,
     )
 
-    return dicts_to_csv(filepath, data, fieldnames, encoding, newline)
+    return dicts_to_csv(filepath, data, fieldnames, encoding, newline, delimiter)
 
 
 def write_file(
