@@ -65,6 +65,7 @@ def to_csv(
         encoding (str): name of encoding used to encode the file
         newline (str): specifies replacement value for newline '\n'
                        or '\r\n' (Windows) character sequences
+        delimiter (str): separator value
 
     Returns:
         None
