@@ -2,17 +2,15 @@ from typing import Any, Optional
 
 
 def to_float(value: str) -> float | Any:
-    """Attempts to convert a string, number, or boolean < value > in the < try > block to a float.
-    Can also convert numbers masquerading as strings that include one or more thousand separator
-    commas (e.g., "5,000,000").
-
-    If a runtime exception is encountered the < value > is returned unchanged in the except block.
+    """Attempts to convert a < value > to a float including numeric strings that include one or
+    more thousand separator commas (e.g., "1,000,000.9999"). If a runtime exception is encountered the
+    < value > is returned to the caller unchanged.
 
     Parameters:
-        value (obj): string or number to be converted
+        value (bool|float|int|str): string or number to be converted
 
     Returns:
-        float|any: float if value successfully converted; otherwise returns value unchanged
+        float|any: float if value converted; otherwise returns value unchanged
     """
 
     try:
@@ -22,18 +20,16 @@ def to_float(value: str) -> float | Any:
 
 
 def to_int(value: str) -> int | Any:
-    """Attempts to convert a string, number boolean < value > in the < try > block to an integer.
-    Can also convert numbers masquerading as strings that include one or more thousand separator
-    commas (e.g., "5,000,000") or a period that designates a fractional component
-    (e.g., "5,000,000.9999").
-
-    If a runtime exception is encountered the < value > is returned unchanged in the except block.
+    """Attempts to convert a < value > to an integer including numeric strings that include one or
+    more thousand separator commas (e.g., "1,000,000") or a period designating a fractional
+    component (e.g., "1,000,000.9999"). If a runtime exception is encountered the < value > is
+    returned to the caller unchanged.
 
     Parameters:
-        value (str|int): string or number to be converted
+        value (bool|float|int|str): value to be converted
 
     Returns:
-        int|any: integer if value successfully converted else returns value unchanged
+        int|any: integer if value converted else returns value unchanged
     """
 
     try:
