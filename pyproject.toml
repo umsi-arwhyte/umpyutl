@@ -1,48 +1,25 @@
 [project]
 name = "umpyutl"
-dynamic = ["version"]
+version = "2.1.1"
 description = "Utility classes and functions."
 readme = "README.md"
-license = {text = "BSD-3-Clause"}
+license = { text = "BSD-3-Clause" }
 requires-python = ">=3.10"
-authors = [
-    { name = "Anthony Whyte", email = "anthwhyte@gmail.com" },
-]
-keywords = [
-    "arwhyte",
-    "umpyutl",
-    "utilities",
-]
+authors = [{ name = "Anthony Whyte", email = "anthwhyte@gmail.com" }]
+keywords = ["arwhyte", "umpyutl", "utilities"]
 classifiers = [
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
 ]
-dependencies = [
-    "mypy>=1.15.0",
-    "pyYAML",
-    "requests",
-]
+dependencies = ["pyyaml>=6.0.3", "requests>=2.32.5"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.10,<0.10.0"]
+build-backend = "uv_build"
 
 [project.urls]
 Homepage = "https://github.com/umsi-arwhyte/umpyutl"
-
-[tool.hatch.version]
-path = "src/umpyutl/__about__.py"
-
-[tool.hatch.build.targets.sdist]
-exclude = [
-    "/.github",
-    "/.tests",
-    "/.venv"
-]
-include = [
-    "src/umpyutl",
-]
 
 [tool.ruff]
 line-length = 100
